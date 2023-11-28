@@ -1,3 +1,5 @@
+package Quiz;
+
 public class Question {
 
     private int id;

@@ -14,6 +14,7 @@ public class School {
         this.moneySpend=0;
     }
 
+    public School(){};
     public void getStudents() {
         System.out.println("Students name:");
         for (Student stu:students) {
@@ -33,6 +34,7 @@ public class School {
     }
 
     public void setTeachers(ArrayList<Teacher> teachers) {
+
         this.teachers = teachers;
     }
 
@@ -42,6 +44,7 @@ public class School {
 
     public static void setMoneyEarned(int moneyEarned) {
         School.moneyEarned = moneyEarned;
+        System.out.println("school earn update");
     }
 
     public static int getMoneySpend() {

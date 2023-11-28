@@ -32,6 +32,7 @@ public class Student {
     public void setFeesPaid(int feesPaid) {
         this.feesPaid += feesPaid;
         School.setMoneyEarned(feesPaid);
+        System.out.println("updated");
     }
 
     public int getPendingFees() {
