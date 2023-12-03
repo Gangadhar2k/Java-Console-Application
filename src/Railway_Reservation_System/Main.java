@@ -10,7 +10,8 @@ public class Main {
 
         TicketBooker booker = new TicketBooker();
 
-        if(booker.availableWL == 0){
+        if(booker.availableWL == 0 && booker.availableUpperBerths == 0 && booker.availableLowerBerths == 0 &&
+        booker.availableMiddleBerths == 0 && booker.availableRAC == 0){
             System.out.println("Ticket Not Available!!!");
             return;
         }

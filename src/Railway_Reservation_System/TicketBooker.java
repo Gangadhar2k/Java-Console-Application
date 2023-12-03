@@ -2,11 +2,11 @@ package Railway_Reservation_System;
 
 import java.util.*;
 public class TicketBooker {
-    static int availableLowerBerths = 1;
-    static int availableMiddleBerths = 1;
-    static int availableUpperBerths = 1;
-    static int availableRAC = 1;
-    static int availableWL = 1;
+    static int availableLowerBerths = 1;        //3
+    static int availableMiddleBerths = 1;       //3
+    static int availableUpperBerths = 1;        //3
+    static int availableRAC = 1;                //3
+    static int availableWL = 1;                 //3
 
 
     static Queue<Integer> racList = new LinkedList<>();
@@ -14,12 +14,12 @@ public class TicketBooker {
 
     static List<Integer> BookedList = new ArrayList<>();
 
-
-    static List<String> AvailableLowerPosition = new ArrayList<>(Arrays.asList("L1","L2","L3"));
-    static List<String> AvailableMiddlePosition = new ArrayList<>(Arrays.asList("M1","M2","M3"));
-    static List<String> AvailableUpperPosition = new ArrayList<>(Arrays.asList("U1","U2","U3"));
-    static List<String> AvailableRacPosition = new ArrayList<>(Arrays.asList("RAC1","RAC2","RAC3"));
-    static List<String> AvailableWaitingPosition = new ArrayList<>(Arrays.asList("WL1","WL2","WL3"));
+//    ,"L2","L3"  ,"M2","M3"   ,"U2","U3"     ,"RAC2","RAC3"  ,"WL2","WL3"
+    static List<String> AvailableLowerPosition = new ArrayList<>(Arrays.asList("L1"));
+    static List<String> AvailableMiddlePosition = new ArrayList<>(Arrays.asList("M1"));
+    static List<String> AvailableUpperPosition = new ArrayList<>(Arrays.asList("U1"));
+    static List<String> AvailableRacPosition = new ArrayList<>(Arrays.asList("RAC1"));
+    static List<String> AvailableWaitingPosition = new ArrayList<>(Arrays.asList("WL1"));
 
     static Map<Integer,Pasanger> passengers = new HashMap<>();
 
@@ -59,16 +59,17 @@ public class TicketBooker {
           if(!racList.isEmpty())
           {
               int firstRAC = racList.poll();
-              if(availableWL == 0){
-                  availableWL++;
-              }
               Pasanger pasanger = passengers.get(firstRAC);
               String name = pasanger.name;
               String gender = pasanger.gender;
               int age = pasanger.age;
               String berthPreference = pasanger.preferred_berth;
+              String seat_Num = pasanger.seat_number;
+              AvailableRacPosition.add(seat_Num);
               passengers.remove(pasanger.pnr);
+              availableRAC++;
               Pasanger p = new Pasanger(name, gender, age, berthPreference.toUpperCase());
+              p.seat_number="";
               Main main = new Main();
               main.bookTicket(p);
               moveToRac();
@@ -88,9 +89,13 @@ public class TicketBooker {
             String name = pasanger.name;
             String gender = pasanger.gender;
             int age = pasanger.age;
+            String seat_Num = pasanger.seat_number;
+            AvailableWaitingPosition.add(seat_Num);
             String berthPreference = pasanger.preferred_berth;
             passengers.remove(pasanger.pnr);
+            availableWL++;
             Pasanger p = new Pasanger(name, gender, age, berthPreference.toUpperCase());
+            p.seat_number="";
             Main main = new Main();
             main.bookTicket(p);
         }
